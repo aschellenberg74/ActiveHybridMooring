@@ -6,6 +6,8 @@
 % Run `mex -setup C++` in Matlab to configure a C++ compiler if you have not already done so.
 % !!BE SURE THE C++ COMPILER MATCHES THE ONE USED TO COMPILE MOORDYN!!
 
+% Andreas: I am using VS2022
+
 ndof = 6; %6
 
 if ndof == 3
@@ -16,9 +18,9 @@ elseif ndof == 6
     srcname = 'moordyn_sfunc_6dof.cpp';
 end
 
-libName = 'moordyn.dll';
-libDir = '../../MoorDyn/build/source';
-sourceDir = '../../MoorDyn/source';
+libName = 'moordyn';
+libDir = '../../MoorDyn/BLD/source';
+sourceDir = '../../MoorDyn/SRC/source';
 
 %% BUILD COMMAND
 fprintf( '\n----------------------------\n' );
@@ -28,6 +30,8 @@ mex(srcname, ...
     ['-L', libDir], ...
     ['-l', libName], ...
     ['-I', sourceDir], ...
-    ['CXXFLAGS=$CXXFLAGS -DS_FUNCTION_NAME=' mexname], ...
+    'COMPFLAGS="$COMPFLAGS /std:c++17"', ...
+    ['-DS_FUNCTION_NAME=' mexname], ...
+    '-D_HAS_CXX17=1', ...
     '-output', mexname, ...
     '-v');

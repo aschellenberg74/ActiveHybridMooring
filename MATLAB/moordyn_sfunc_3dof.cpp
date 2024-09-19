@@ -38,7 +38,7 @@
 #define WORKARY_OUTPUT 0
 #define WORKARY_INPUT 1
 
-static int ndof = 0;
+const int ndof = 9;   // (3 mooring lines) * (3 dof)
 static double dt = 0;
 static double TMax = 0;
 static int NumInputs = 18;
@@ -237,7 +237,7 @@ static void mdlInitializeSampleTimes(SimStruct *S)
     if (t == -1){
         
         // get general system definitions
-        ndof = mdSystem->NCoupledDOF();
+        //ndof = mdSystem->NCoupledDOF();
         auto points = mdSystem->GetPoints();
         auto lines = mdSystem->GetLines();
         int num_lines = lines.size();
