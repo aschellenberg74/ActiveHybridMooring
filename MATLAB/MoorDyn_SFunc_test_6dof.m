@@ -9,4 +9,7 @@ MD_InputFileName = '../MoorDyn/ahm_6dof.txt';
 dt               = 0.01; % seconds
 TMax             = 60; % seconds
 
-sim('../Simulink/MD_sfunc_test_6dof_new.slx');
+tic;
+results = sim('../Simulink/MD_sfunc_test_6dof_new.slx');
+fprintf(1,'\n');
+toc;

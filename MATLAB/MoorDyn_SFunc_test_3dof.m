@@ -9,4 +9,7 @@ MD_InputFileName = '../MoorDyn/ahm_3dof.txt';
 dt               = 0.01; % seconds
 TMax             = 60; % seconds
 
-sim('../Simulink/MD_sfunc_test_3dof_new.slx');
+tic;
+results = sim('../Simulink/MD_sfunc_test_3dof_new.slx');
+fprintf(1,'\n');
+toc;
